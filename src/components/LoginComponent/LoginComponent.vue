@@ -7,11 +7,13 @@ const handleSubmit = async () => {
   const { email, password, loginPost } = storeLogin;
 
   loginPost({ email, password });
+
+  storeLogin.$reset();
 };
 </script>
 
 <template>
-  <section class="test">
+  <section class="login__container">
     <div>
       <h1>Sign Up</h1>
     </div>
