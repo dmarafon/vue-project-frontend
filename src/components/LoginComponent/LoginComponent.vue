@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import useFormStore from "../../stores/formStore";
-import { LoginStyled } from "./LoginStyled";
-
-const LoginStyle = {
-  components: {
-    LoginStyle: LoginStyled,
-  },
-};
 
 const loginForm = useFormStore();
 </script>
 
 <template>
-  <LoginStyle>
+  <section class="test">
     <div>
       <h1>Sign Up</h1>
     </div>
@@ -37,5 +30,7 @@ const loginForm = useFormStore();
       </div>
       <button type="submit">Log In</button>
     </form>
-  </LoginStyle>
+  </section>
 </template>
+
+<style src="./LoginStyled.css"></style>
