@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import useFormStore from "../../stores/formStore";
 
-const loginForm = useFormStore();
+const storeLogin = useFormStore();
+
+const handleSubmit = async () => {
+  const { email, password, loginPost } = storeLogin;
+
+  loginPost({ email, password });
+};
 </script>
 
 <template>
@@ -9,12 +15,12 @@ const loginForm = useFormStore();
     <div>
       <h1>Sign Up</h1>
     </div>
-    <form submit="onSubmit">
+    <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
       <div>
         <label for="email">Email Address</label>
         <input
           id="email"
-          v-model="loginForm.email"
+          v-model="storeLogin.email"
           type="email"
           placeholder=" "
         />
@@ -23,7 +29,7 @@ const loginForm = useFormStore();
         <label for="password">Password</label>
         <input
           id="password"
-          v-model="loginForm.password"
+          v-model="storeLogin.password"
           type="password"
           placeholder=" "
         />
