@@ -18,7 +18,7 @@ const handleSubmit = async () => {
       <h1>Sign Up</h1>
     </div>
     <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
-      <div>
+      <div class="login__input--email">
         <label for="email">Email Address</label>
         <input
           id="email"
@@ -27,7 +27,7 @@ const handleSubmit = async () => {
           placeholder=" "
         />
       </div>
-      <div>
+      <div class="login__input--password">
         <label for="password">Password</label>
         <input
           id="password"
@@ -36,9 +36,11 @@ const handleSubmit = async () => {
           placeholder=" "
         />
       </div>
-      <button type="submit">Log In</button>
+      <div class="login__input--button">
+        <button type="submit">Log In</button>
+      </div>
     </form>
   </section>
 </template>
 
-<style src="./LoginStyled.css"></style>
+<style src="./LoginStyle.css"></style>
