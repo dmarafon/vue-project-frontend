@@ -10,9 +10,8 @@ const useFormStore = defineStore("loginForm", {
   state: () => ({ email: "", password: "" }),
   actions: {
     async loginPost(loginInformation: LoginInformation) {
-      console.log(loginInformation);
       try {
-        const route = `https://desterra-api.onrender.com/users/login`;
+        const route = `${import.meta.env.VITE_API_URL}users/login`;
         const {
           data: { token },
         } = await axios.post(route, loginInformation);
