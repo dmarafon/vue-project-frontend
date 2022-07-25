@@ -1,34 +1,41 @@
-<script lang="ts">
+<script setup lang="ts">
+import useFormStore from "../../stores/formStore";
 import { LoginStyled } from "./LoginStyled";
 
-export default {
-  name: "LoginComponent",
+const LoginStyle = {
   components: {
-    LoginStyled: LoginStyled,
+    LoginStyle: LoginStyled,
   },
-  props: { buttonName: { type: String } },
 };
+
+const loginForm = useFormStore();
 </script>
 
 <template>
-  <LoginStyled>
+  <LoginStyle>
     <div>
       <h1>Sign Up</h1>
     </div>
-    <form @submit="onSubmit">
+    <form submit="onSubmit">
       <div>
         <label for="email">Email Address</label>
-        <input id="email" v-model="email" type="email" placeholder=" " />
+        <input
+          id="email"
+          v-model="loginForm.email"
+          type="email"
+          placeholder=" "
+        />
       </div>
       <div>
         <label for="password">Password</label>
         <input
           id="password"
-          v-model="password"
+          v-model="loginForm.password"
           type="password"
           placeholder=" "
         />
       </div>
+      <button type="submit">Log In</button>
     </form>
-  </LoginStyled>
+  </LoginStyle>
 </template>
