@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import useFormStore from "../../stores/formStore";
+import useLoginFormStore from "../../stores/formStore";
+import useUiStore from "../../stores/uiStore";
+import LoadingModal from "../LoadingModal/LoadingModal.vue";
+import { storeToRefs } from "pinia";
 
-const storeLogin = useFormStore();
+const storeLogin = useLoginFormStore();
 
-const handleSubmit = async () => {
+const storeUI = useUiStore();
+
+const { loading } = storeToRefs(storeUI);
+
+const handleSubmit = () => {
   const { email, password, loginPost } = storeLogin;
 
   loginPost({ email, password });
@@ -13,12 +20,15 @@ const handleSubmit = async () => {
 </script>
 
 <template>
+  <Teleport to="#modal__container">
+    <LoadingModal v-if="loading" />
+  </Teleport>
   <section class="login__container">
     <div>
       <h1>Sign Up</h1>
     </div>
     <form noValidate autoComplete="off" @submit.prevent="handleSubmit">
-      <div>
+      <div class="login__input--email">
         <label for="email">Email Address</label>
         <input
           id="email"
@@ -27,7 +37,7 @@ const handleSubmit = async () => {
           placeholder=" "
         />
       </div>
-      <div>
+      <div class="login__input--password">
         <label for="password">Password</label>
         <input
           id="password"
@@ -36,9 +46,11 @@ const handleSubmit = async () => {
           placeholder=" "
         />
       </div>
-      <button type="submit">Log In</button>
+      <div class="login__input--button">
+        <button type="submit">Log In</button>
+      </div>
     </form>
   </section>
 </template>
 
-<style src="./LoginStyled.css"></style>
+<style src="./LoginStyle.css"></style>
