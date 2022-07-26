@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import useFormStore from "../../stores/formStore";
+import useLoginFormStore from "../../stores/formStore";
+import useUiStore from "../../stores/uiStore";
+import LoadingModal from "../LoadingModal/LoadingModal.vue";
+import { storeToRefs } from "pinia";
 
-const storeLogin = useFormStore();
+const storeLogin = useLoginFormStore();
 
-const handleSubmit = async () => {
+const storeUI = useUiStore();
+
+const { loading } = storeToRefs(storeUI);
+
+const handleSubmit = () => {
   const { email, password, loginPost } = storeLogin;
 
   loginPost({ email, password });
@@ -13,6 +20,9 @@ const handleSubmit = async () => {
 </script>
 
 <template>
+  <Teleport to="#modal__container">
+    <LoadingModal v-if="loading" />
+  </Teleport>
   <section class="login__container">
     <div>
       <h1>Sign Up</h1>
