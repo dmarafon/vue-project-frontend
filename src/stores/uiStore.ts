@@ -1,6 +1,4 @@
-import { defineStore, createPinia } from "pinia";
-
-export const pinia = createPinia();
+import { defineStore } from "pinia";
 
 const useUiStore = defineStore("uiStore", {
   state: () => ({ loading: false }),
